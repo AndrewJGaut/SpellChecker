@@ -2,56 +2,17 @@
 #include <iostream>
 #include "utility.h"
 
-/*
-void print_mat(int mat[][10], const int NUM_ROWS, const int NUM_COLS)
-{
-	for(int row = 0; row < NUM_ROWS; row++)
-	{
-		std::cout << "| ";
-		for(int col = 0; col < NUM_COLS; col++)
-		{
-			std::cout << mat[row][col] << " ";
-		}
-		std::cout << std::endl;
-	}
-}
-*/
-
-/*
 int min(int a, int b, int c)
 {
-	if(a < b)
-	{
-		if(a <= c) return a;
-		if(c < a) return c;
-	}
-	if(b < a)
-	{
-		if(b <= c) return b;
-		if(c < b) return c;
-	}
-	if(c < a)
-	{
-		if(c <= b) return c;
-		if(c < b) return c;
-	}
-	else
-	{
-		return 50000;
-	}
-}*/
-
-int min(int a, int b, int c)
-{
-	if(a < b && a < c)
+	if(a < b && a <= c)
 	{
 		return a;
 	}
-	if(b < a && b < c)
+	if(b < a && b <= c)
 	{
 		return b;
 	}
-	if(c < a && c < b)
+	if(c < a && c <= b)
 	{
 		return c;
 	}
@@ -75,6 +36,8 @@ int min_edit_dist(std::string str1, std::string str2)
 	}
 
 	//dynamic programming
+	//memoize the values into a matrix
+	//use the values already in the matrix to compute the other values
 	for(int row = 1; row < NUM_ROWS; row++)
 	{
 		for(int col = 1; col < NUM_COLS; col++)
@@ -96,9 +59,11 @@ int min_edit_dist(std::string str1, std::string str2)
 		}
 	}
 
-	//print_mat(distances, NUM_ROWS, NUM_COLS);
+	return distances[str1.length()][str2.length()];
+}
 
-	//DEBUGGING!!
+/*
+//DEBUGGING!!
 	for(int row = 0; row < NUM_ROWS; row++)
 	{
 		std::cout << "| ";
@@ -108,6 +73,4 @@ int min_edit_dist(std::string str1, std::string str2)
 		}
 		std::cout << std::endl;
 	}
-
-	return distances[str1.length()][str2.length()];
-}
+*/
