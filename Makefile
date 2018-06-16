@@ -4,6 +4,8 @@ CXXFLAGS = -Wall -g -std=c++11
 
 BINARIES = main test
 
+all: $(BINARIES)
+
 test: test.o utility.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 

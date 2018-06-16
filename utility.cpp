@@ -93,13 +93,18 @@ std::vector<string> find_close_words(std::string str)
 	getline(dict, line);
 	while(line.length() > 0 && getline(dict, line))
 	{
+		line = line.substr(0, line.length()-2);
 		int dist = min_edit_dist(str, line);
+		if(line == "assert/r")
+		{
+			int y = 6;
+		}
 		if(dist == 0)
 		{
 			//the word isn't mispelled
 			return vector<string>();
 		}
-		if(dist <= 3)
+		if(dist <= 1)
 		{
 			//it might be what the misspelled word should be
 			//so, add it to our words vector

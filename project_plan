@@ -4,3 +4,14 @@
 	-use this to find context of words, likelihood one word follows another
 4. store data in a hashtable
 5. order of Markov chain (how many words past you want to store)
+
+
+
+STILL TO DO:
+- write probability function
+- write context checker? 
+	Markov chain?
+- implement probabilistic analysis
+- write class which incorporates that analysis
+- make it so the vector is sorted by proability
+- FIX FIND WORDS FUNCTION
