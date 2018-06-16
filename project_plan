@@ -1,0 +1,6 @@
+1. Find a free dictionary
+2. download and read dictionary in
+3. download and read in a full book (already have gatsby)
+	-use this to find context of words, likelihood one word follows another
+4. store data in a hashtable
+5. order of Markov chain (how many words past you want to store)
