@@ -79,7 +79,7 @@ int min_edit_dist(std::string str1, std::string str2)
 	{
 		for(int col = 1; col < NUM_COLS; col++)
 		{
-			if(str1[row] == str2[col])
+			if(str1[row-1] == str2[col-1])
 			{
 				distances[row][col] = distances[row-1][col-1];
 			}

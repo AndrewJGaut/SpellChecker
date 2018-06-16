@@ -10,3 +10,6 @@ main.o: utility.h main.cpp
 
 utility.o: utility.h utility.cpp
 	$(CXX) $(CXXFLAGS) -c utility.cpp
+
+clean:
+	/bin/rm -f *.o main
