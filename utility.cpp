@@ -6,15 +6,15 @@ using namespace std;
 
 int min(int a, int b, int c)
 {
-	if(a < b && a <= c)
+	if(a < b && a < c)
 	{
 		return a;
 	}
-	if(b < a && b <= c)
+	if(b < a && b < c)
 	{
 		return b;
 	}
-	if(c < a && c <= b)
+	if(c < a && c < b)
 	{
 		return c;
 	}
@@ -90,6 +90,7 @@ std::vector<string> find_close_words(std::string str)
 	ifstream dict("dictionary.txt");
 	vector<string> words;
 	string line;
+	getline(dict, line);
 	while(line.length() > 0 && getline(dict, line))
 	{
 		int dist = min_edit_dist(str, line);

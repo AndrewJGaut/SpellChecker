@@ -2,6 +2,11 @@ CXX = g++
 CXXFLAGS = -Wall -g -std=c++11
 
 
+BINARIES = main test
+
+test: test.o utility.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
 main: main.o utility.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
