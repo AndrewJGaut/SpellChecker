@@ -17,4 +17,4 @@ utility.o: utility.h utility.cpp
 	$(CXX) $(CXXFLAGS) -c utility.cpp
 
 clean:
-	/bin/rm -f *.o main
+	/bin/rm -f *.o $(BINARIES) 
