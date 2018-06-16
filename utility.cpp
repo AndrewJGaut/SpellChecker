@@ -93,7 +93,7 @@ std::vector<string> find_close_words(std::string str)
 	getline(dict, line);
 	while(line.length() > 0 && getline(dict, line))
 	{
-		line = line.substr(0, line.length()-2);
+		line = line.substr(0, line.length()-1);
 		int dist = min_edit_dist(str, line);
 		if(line == "assert/r")
 		{

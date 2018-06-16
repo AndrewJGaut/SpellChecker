@@ -14,4 +14,3 @@ STILL TO DO:
 - implement probabilistic analysis
 - write class which incorporates that analysis
 - make it so the vector is sorted by proability
-- FIX FIND WORDS FUNCTION
