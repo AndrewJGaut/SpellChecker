@@ -1,6 +1,8 @@
 #include <algorithm>
+#include <fstream>
 #include <iostream>
 #include "utility.h"
+using namespace std;
 
 int min(int a, int b, int c)
 {
@@ -60,6 +62,53 @@ int min_edit_dist(std::string str1, std::string str2)
 	}
 
 	return distances[str1.length()][str2.length()];
+}
+
+//PROBLEM: NEED A WORDFREQ OBJECT TO INSERT THAT HAS WORD AND FREQUENCY
+/*
+void sorted_vector_insert(vector<string>& v, int val)
+{
+	for(int i = 0; i < v.size(); i++)
+	{
+		if(val <= v[i])
+		{
+			//sort vector
+			v.push_back(-5); //garbage value
+			int j = v.size()-1;
+			while(j > i)
+			{
+				v[j] = v[j-1];
+			}
+			v[i] = val;
+			return;
+		}
+	}
+}*/
+
+std::vector<string> find_close_words(std::string str)
+{
+	ifstream dict("dictionary.txt");
+	vector<string> words;
+	string line;
+	while(line.length() > 0 && getline(dict, line))
+	{
+		int dist = min_edit_dist(str, line);
+		if(dist == 0)
+		{
+			//the word isn't mispelled
+			return vector<string>();
+		}
+		if(dist <= 3)
+		{
+			//it might be what the misspelled word should be
+			//so, add it to our words vector
+			words.push_back(line);
+
+		}
+
+	}
+
+	return words;
 }
 
 /*
