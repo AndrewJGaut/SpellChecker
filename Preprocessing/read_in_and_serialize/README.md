@@ -1,0 +1,5 @@
+THE CODE IN THIS DIRECTORY IS UNTESTED UNTIL BIG.TXT IS OBTAINED!!!!!
+PLUS, BOOST HAS YET TO BE TESTED SO NOT ENTIRELY SURE THE SERIALIZATION WORKS YET EITHER
+
+
+maybe serializtion isn't the way to go; seems to be causing quite a few issues

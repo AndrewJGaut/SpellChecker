@@ -1,0 +1,10 @@
+create database word_popularity
+use wordPopularity
+
+create table words
+(
+popularity int primary key, //primary key so can't put duplicate value
+word varchar(50)
+)
+
+insert into words values(1, 'the')
