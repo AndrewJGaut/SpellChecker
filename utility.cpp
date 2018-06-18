@@ -86,16 +86,28 @@ void sorted_vector_insert(vector<string>& v, int val)
 	}
 }*/
 
-std::vector<Word> find_close_words(std::string str)
+//put the dictionary into a hashset
+void hash_dict(unordered_set<string>& dict, string filename)
 {
-	ifstream dict("dictionary.txt");
-	vector<Word> words;
+	ifstream dict_stream(filename);
+
 	string line;
-	getline(dict, line);
-	while(line.length() > 0 && getline(dict, line))
+	while(getline(dict_stream, line) && line.length() > 0)
 	{
 		line = line.substr(0, line.length()-1);
-		int dist = min_edit_dist(str, line);
+		dict.insert(line);
+	}
+
+
+}
+
+std::vector<Word> find_close_words(const unordered_set<string>& dict, std::string str)
+{
+	vector<Word> words;
+	unordered_set<string>::iterator i;
+	for(i = dict.begin(); i != dict.end(); ++i)
+	{
+		int dist = min_edit_dist(str, *i);
 		if(dist == 0)
 		{
 			//the word isn't mispelled
@@ -105,7 +117,7 @@ std::vector<Word> find_close_words(std::string str)
 		{
 			//it might be what the misspelled word should be
 			//so, add it to our words vector
-			words.push_back(Word(line,dist));
+			words.push_back(Word(*i,dist));
 
 		}
 
@@ -128,9 +140,9 @@ std::vector<Word> find_close_words(std::string str)
 */
 
 
-string get_maximally_probable_word(std::vector<Word>& words, unordered_map<string,int>& table)
+string get_maximally_probable_word(std::string misspelled_word, const std::unordered_set<std::string>& dict, std::vector<Word>& words, unordered_map<string,int>& table)
 {
-	words = find_close_words("dad");
+	words = find_close_words(dict, misspelled_word);
 	
 	//here, loop through words vector and find word with
 	//highest probability to make guess
@@ -184,6 +196,11 @@ void populate_table(std::unordered_map<std::string, int>& table, std::string fil
 	}
 	file.close();
 
+}
+
+bool misspelled(std::string str, const std::unordered_set<std::string>& dict)
+{
+	return (dict.find(str) != dict.end());
 }
 
 
