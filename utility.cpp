@@ -104,7 +104,8 @@ void hash_dict(unordered_set<string>& dict, string filename)
 std::vector<Word> find_close_words(const unordered_set<string>& dict, std::string str)
 {
 	vector<Word> words;
-	unordered_set<string>::iterator i;
+	//unordered_set<string>::iterator i;
+	auto i = dict.begin();
 	for(i = dict.begin(); i != dict.end(); ++i)
 	{
 		int dist = min_edit_dist(str, *i);
