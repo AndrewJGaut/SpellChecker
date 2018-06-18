@@ -86,30 +86,26 @@ void sorted_vector_insert(vector<string>& v, int val)
 	}
 }*/
 
-std::vector<string> find_close_words(std::string str)
+std::vector<Word> find_close_words(std::string str)
 {
 	ifstream dict("dictionary.txt");
-	vector<string> words;
+	vector<Word> words;
 	string line;
 	getline(dict, line);
 	while(line.length() > 0 && getline(dict, line))
 	{
 		line = line.substr(0, line.length()-1);
 		int dist = min_edit_dist(str, line);
-		if(line == "assert/r")
-		{
-			int y = 6;
-		}
 		if(dist == 0)
 		{
 			//the word isn't mispelled
-			return vector<string>();
+			return vector<Word>();
 		}
-		if(dist <= 1)
+		if(dist <= 2)
 		{
 			//it might be what the misspelled word should be
 			//so, add it to our words vector
-			words.push_back(line);
+			words.push_back(Word(line,dist));
 
 		}
 
@@ -131,7 +127,7 @@ std::vector<string> find_close_words(std::string str)
 	}
 */
 
-void populate_table(std::unordered_map<std::string, Word>& table, std::string filename)
+void populate_table(std::unordered_map<std::string, int>& table, std::string filename)
 {
 	string curr;
 	char c;
@@ -152,12 +148,13 @@ void populate_table(std::unordered_map<std::string, Word>& table, std::string fi
 		}
 		if(table.find(curr) != table.end())
 		{
-			Word w = Word(curr);
-			table.insert(pair<string,Word>(curr, w));
+			table.insert(pair<string,int>(curr, 1));
 		}
 		else
 		{
-			table[curr].increment_freq();
+			//increment the frequency
+			int curr_freq = table[curr];
+			table[curr] = curr_freq + 1;
 		}
 	}
 	file.close();

@@ -15,6 +15,7 @@ class Word
 
 		//modifiers
 		void increment_freq();
+		void set_freq(int new_freq);
 		void calc_probability(); //we need this function because
 		//we don't want to calculate the probability for all
 		//words; just the ones that are close in min_edit_dist

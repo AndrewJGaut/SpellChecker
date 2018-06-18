@@ -23,6 +23,11 @@ double Word::get_probability()
 	return probability;
 }
 
+void Word::set_freq(int new_freq)
+{
+	frequency = new_freq;
+}
+
 void Word::increment_freq()
 {
 	frequency++;
