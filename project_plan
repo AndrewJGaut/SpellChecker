@@ -8,9 +8,9 @@
 
 
 STILL TO DO:
-- write probability function
 - write context checker? 
 	Markov chain?
-- implement probabilistic analysis
-- write class which incorporates that analysis
-- make it so the vector is sorted by proability
+- improve probabilistic analysis (right now it's terrible)
+
+
+

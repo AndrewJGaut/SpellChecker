@@ -47,6 +47,9 @@ int main()
 
 		}
 
+		//reset curr_word
+		curr_word = "";
+
 
 
 		

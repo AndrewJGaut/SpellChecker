@@ -114,7 +114,7 @@ std::vector<Word> find_close_words(const unordered_set<string>& dict, std::strin
 			//the word isn't mispelled
 			return vector<Word>();
 		}
-		if(dist <= 2)
+		if(dist <= 3)
 		{
 			//it might be what the misspelled word should be
 			//so, add it to our words vector
@@ -201,7 +201,7 @@ void populate_table(std::unordered_map<std::string, int>& table, std::string fil
 
 bool misspelled(std::string str, const std::unordered_set<std::string>& dict)
 {
-	return (dict.find(str) != dict.end());
+	return (dict.find(str) == dict.end());
 }
 
 
