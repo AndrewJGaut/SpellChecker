@@ -127,6 +127,31 @@ std::vector<Word> find_close_words(std::string str)
 	}
 */
 
+
+string get_maximally_probable_word(std::vector<Word>& words, unordered_map<string,int>& table)
+{
+	words = find_close_words("dad");
+	
+	//here, loop through words vector and find word with
+	//highest probability to make guess
+	double max_probability = -1;
+	string max_prob_word = "";
+	for(int i = 0; i < words.size(); i++)
+	{
+		int curr_freq = table[words[i].get_word()];
+		words[i].set_freq(curr_freq);
+		words[i].calc_probability();
+		if(words[i].get_probability() > max_probability)
+		{
+			max_probability = words[i].get_probability();
+			max_prob_word = words[i].get_word();
+		}
+	}
+
+	return max_prob_word;
+
+}
+
 void populate_table(std::unordered_map<std::string, int>& table, std::string filename)
 {
 	string curr;

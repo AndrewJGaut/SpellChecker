@@ -15,6 +15,8 @@ int min(int a, int b, int c);
 
 std::vector<Word> find_close_words(std::string str);
 
+std::string get_maximally_probable_word(std::vector<Word>& words, std::unordered_map<std::string,int>& table);
+
 void populate_table(std::unordered_map<std::string, int>& table, std::string filename);
 
 //void sorted_vector_insert(std::vector<string>& v, int val);
