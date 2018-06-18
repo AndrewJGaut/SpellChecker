@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "utility.h"
+#include "Word.h"
 using namespace std;
 
 int min(int a, int b, int c)
@@ -129,3 +130,52 @@ std::vector<string> find_close_words(std::string str)
 		std::cout << std::endl;
 	}
 */
+
+void populate_table(std::unordered_map<std::string, Word>& table, std::string filename)
+{
+	string curr;
+	char c;
+
+	ifstream file(filename);
+
+	//Read in the file and add to the hashtableas we go
+	//if the word is already in the table the just 
+	//incrememnt its frequency
+	//if the word isn't already in the table then add
+	//it with a frequency of 1
+	while(!file.eof())
+	{
+		curr = "";
+		while(file.get(c) && isalpha(c))
+		{
+			curr += c;
+		}
+		if(table.find(curr) != table.end())
+		{
+			Word w = Word(curr);
+			table.insert(pair<string,Word>(curr, w));
+		}
+		else
+		{
+			table[curr].increment_freq();
+		}
+	}
+	file.close();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
